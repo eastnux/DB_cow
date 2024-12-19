@@ -20,7 +20,7 @@ public class FarmService {
     // Method to select all farms
     public List<Farm> selectAll() {
         List<Farm> farms = new ArrayList<>();
-        String query = "SELECT farm_id, name, location FROM farms";
+        String query = "SELECT farm_id, farm_name, farm_location FROM farm";
 
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
@@ -29,8 +29,8 @@ public class FarmService {
             while (rs.next()) {
                 Farm farm = new Farm(
                         rs.getString("farm_id"),
-                        rs.getString("name"),
-                        rs.getString("location")
+                        rs.getString("farm_name"),
+                        rs.getString("farm_location")
                 );
                 farms.add(farm);
             }
@@ -44,7 +44,7 @@ public class FarmService {
     // Method to select a farm by ID
     public Farm selectById(String farmId) {
         Farm farm = null;
-        String query = "SELECT farm_id, name, location FROM farms WHERE farm_id = ?";
+        String query = "SELECT farm_id, farm_name, farm_location FROM farm WHERE farm_id = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -55,8 +55,8 @@ public class FarmService {
                 if (rs.next()) {
                     farm = new Farm(
                             rs.getString("farm_id"),
-                            rs.getString("name"),
-                            rs.getString("location")
+                            rs.getString("farm_name"),
+                            rs.getString("farm_location")
                     );
                 }
             }
@@ -69,14 +69,14 @@ public class FarmService {
 
     // Method to insert a new farm
     public void insert(Farm farm) {
-        String query = "INSERT INTO farms (farm_id, name, location) VALUES (?, ?, ?)";
+        String query = "INSERT INTO farm (farm_id, farm_name, farm_location) VALUES (?, ?, ?)";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, farm.getFarm_id());
-            pstmt.setString(2, farm.getName());
-            pstmt.setString(3, farm.getLocation());
+            pstmt.setString(2, farm.getFarm_name());
+            pstmt.setString(3, farm.getFarm_location());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -86,13 +86,13 @@ public class FarmService {
 
     // Method to update a farm by ID
     public void updateById(String farmId, Farm updatedFarm) {
-        String query = "UPDATE farms SET name = ?, location = ? WHERE farm_id = ?";
+        String query = "UPDATE farm SET farm_name = ?, farm_location = ? WHERE farm_id = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setString(1, updatedFarm.getName());
-            pstmt.setString(2, updatedFarm.getLocation());
+            pstmt.setString(1, updatedFarm.getFarm_name());
+            pstmt.setString(2, updatedFarm.getFarm_location());
             pstmt.setString(3, farmId);
 
             pstmt.executeUpdate();
@@ -103,7 +103,7 @@ public class FarmService {
 
     // Method to delete a farm by ID
     public void deleteById(String farmId) {
-        String query = "DELETE FROM farms WHERE farm_id = ?";
+        String query = "DELETE FROM farm WHERE farm_id = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {

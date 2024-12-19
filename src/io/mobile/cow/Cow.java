@@ -2,11 +2,11 @@ package io.mobile.cow;
 
 public class Cow {
     private String cow_id;
-    private String age;
+    private int age;
     private String health_status;
     private String gender;
 
-    public Cow(String cow_id, String age, String health_status, String gender) {
+    public Cow(String cow_id, int age, String health_status, String gender) {
         this.cow_id = cow_id;
         this.age = age;
         this.health_status = health_status;
@@ -17,7 +17,7 @@ public class Cow {
         return cow_id;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
@@ -33,9 +33,10 @@ public class Cow {
     public String toString() {
         return "Cow{" +
                 "cow_id='" + cow_id + '\'' +
-                ", age='" + age + '\'' +
+                ", age=" + age +
                 ", health_status='" + health_status + '\'' +
                 ", gender='" + gender + '\'' +
                 '}';
     }
 }
+

@@ -20,7 +20,7 @@ public class CowService {
     // Method to select all cows
     public List<Cow> selectAll() {
         List<Cow> cows = new ArrayList<>();
-        String query = "SELECT cow_id, age, health_status, gender FROM cows";
+        String query = "SELECT cow_id, age, health_status, gender FROM cow";
 
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
@@ -29,7 +29,7 @@ public class CowService {
             while (rs.next()) {
                 Cow cow = new Cow(
                         rs.getString("cow_id"),
-                        rs.getString("age"),
+                        rs.getInt("age"),
                         rs.getString("health_status"),
                         rs.getString("gender")
                 );
@@ -45,7 +45,7 @@ public class CowService {
     // Method to select a cow by ID
     public Cow selectById(String cowId) {
         Cow cow = null;
-        String query = "SELECT cow_id, age, health_status, gender FROM cows WHERE cow_id = ?";
+        String query = "SELECT cow_id, age, health_status, gender FROM cow WHERE cow_id = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -56,7 +56,7 @@ public class CowService {
                 if (rs.next()) {
                     cow = new Cow(
                             rs.getString("cow_id"),
-                            rs.getString("age"),
+                            rs.getInt("age"),
                             rs.getString("health_status"),
                             rs.getString("gender")
                     );
@@ -71,13 +71,13 @@ public class CowService {
 
     // Method to insert a new cow
     public void insert(Cow cow) {
-        String query = "INSERT INTO cows (cow_id, age, health_status, gender) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO cow (cow_id, age, health_status, gender) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, cow.getCow_id());
-            pstmt.setString(2, cow.getAge());
+            pstmt.setInt(2, cow.getAge());
             pstmt.setString(3, cow.getHealth_status());
             pstmt.setString(4, cow.getGender());
 
@@ -89,12 +89,12 @@ public class CowService {
 
     // Method to update a cow by ID
     public void updateById(String cowId, Cow updatedCow) {
-        String query = "UPDATE cows SET age = ?, health_status = ?, gender = ? WHERE cow_id = ?";
+        String query = "UPDATE cow SET age = ?, health_status = ?, gender = ? WHERE cow_id = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setString(1, updatedCow.getAge());
+            pstmt.setInt(1, updatedCow.getAge());
             pstmt.setString(2, updatedCow.getHealth_status());
             pstmt.setString(3, updatedCow.getGender());
             pstmt.setString(4, cowId);
@@ -107,7 +107,7 @@ public class CowService {
 
     // Method to delete a cow by ID
     public void deleteById(String cowId) {
-        String query = "DELETE FROM cows WHERE cow_id = ?";
+        String query = "DELETE FROM cow WHERE cow_id = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {

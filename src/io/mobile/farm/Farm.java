@@ -2,33 +2,33 @@ package io.mobile.farm;
 
 public class Farm {
     private String farm_id;
-    private String name;
-    private String location;
+    private String farm_name;
+    private String farm_location;
 
-    public Farm(String farm_id, String location, String name) {
+    public Farm(String farm_id, String farm_name, String farm_location) {
         this.farm_id = farm_id;
-        this.location = location;
-        this.name = name;
+        this.farm_name = farm_name;
+        this.farm_location = farm_location;
     }
 
     public String getFarm_id() {
         return farm_id;
     }
 
-    public String getName() {
-        return name;
+    public String getFarm_name() {
+        return farm_name;
     }
 
-    public String getLocation() {
-        return location;
+    public String getFarm_location() {
+        return farm_location;
     }
 
     @Override
     public String toString() {
         return "Farm{" +
                 "farm_id='" + farm_id + '\'' +
-                ", name='" + name + '\'' +
-                ", location='" + location + '\'' +
+                ", farm_name='" + farm_name + '\'' +
+                ", farm_location='" + farm_location + '\'' +
                 '}';
     }
 }

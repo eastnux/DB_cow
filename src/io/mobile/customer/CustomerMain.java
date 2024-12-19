@@ -8,15 +8,15 @@ public class CustomerMain {
         System.out.println("\n 새로운 고객 추가\n-----------------------");
 
         // Insert a new customer
-        String newCustomerId = "김1";
-        String newName = "김길동";
-        String newAddress = "대전시유성구";
-        int insertResult = CustomerService.insert(newCustomerId, newName, newAddress);
-        if (insertResult > 0) {
-            System.out.println("Customer added successfully: " + newCustomerId);
-        } else {
-            System.out.println("Failed to add customer: " + newCustomerId);
-        }
+//        String newCustomerId = "김1";
+//        String newName = "김길동";
+//        String newAddress = "대전시유성구";
+//        int insertResult = CustomerService.insert(newCustomerId, newName, newAddress);
+//        if (insertResult > 0) {
+//            System.out.println("Customer added successfully: " + newCustomerId);
+//        } else {
+//            System.out.println("Failed to add customer: " + newCustomerId);
+//        }
 
         System.out.println("\n 모든 고객 목록 보기\n-----------------------");
 
@@ -31,11 +31,12 @@ public class CustomerMain {
         System.out.println("\n 특정 고객 정보 보기\n-----------------------");
 
         // Select a customer by ID
-        Customer selectedCustomer = CustomerService.selectById(newCustomerId);
+        String selectId = "김1";
+        Customer selectedCustomer = CustomerService.selectById(selectId);
         if (selectedCustomer != null) {
             System.out.println("Selected Customer: " + selectedCustomer);
         } else {
-            System.out.println("Customer not found: " + newCustomerId);
+            System.out.println("Customer not found: " + selectId);
         }
 
         System.out.println("\n 고객 정보 업데이트\n-----------------------");
@@ -52,12 +53,11 @@ public class CustomerMain {
 
         System.out.println("\n 고객 정보 삭제\n-----------------------");
 
-        // Delete a customer
-        int deleteResult = CustomerService.delete(newCustomerId);
-        if (deleteResult > 0) {
-            System.out.println("Customer deleted successfully: " + newCustomerId);
-        } else {
-            System.out.println("Failed to delete customer: " + newCustomerId);
-        }
+//        int deleteResult = CustomerService.delete(newCustomerId);
+//        if (deleteResult > 0) {
+//            System.out.println("Customer deleted successfully: " + newCustomerId);
+//        } else {
+//            System.out.println("Failed to delete customer: " + newCustomerId);
+//        }
     }
 }
