@@ -4,6 +4,7 @@ import java.util.List;
 
 public class CustomerMain {
     public static void main(String[] args) {
+
         System.out.println("\n 새로운 고객 추가\n-----------------------");
 
         // Insert a new customer
