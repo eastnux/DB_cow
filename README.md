@@ -30,6 +30,7 @@
 ## 사용 방법
 
 각 엔티티의 Main 클래스를 실행하여 해당 엔티티에 대한 관리 작업 수행. 예를 들어, `FarmMain`을 실행하면 농장 관리 메뉴가 표시.
+
 ![image](https://github.com/user-attachments/assets/85cd00ef-3f82-4a22-8267-00f117a3190f)
 
 번호를 입력해 해당 작업 수행 가능.
