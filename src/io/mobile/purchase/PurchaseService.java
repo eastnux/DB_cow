@@ -31,7 +31,7 @@ public class PurchaseService {
             while (rs.next()) {
                 Purchase purchase = setPurchase(rs);
                 purchaseList.add(purchase);
-                System.out.println(purchase);
+//                System.out.println(purchase); 중복 출력 방지로 인해 주석 처리.
             }
             return purchaseList;
         } catch (SQLException e) {

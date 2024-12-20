@@ -11,7 +11,7 @@ public class CowMain {
         while (true) {
             printMenu();
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -30,29 +30,29 @@ public class CowMain {
                     deleteCow();
                     break;
                 case 6:
-                    System.out.println("Exiting program...");
+                    System.out.println("프로그램을 종료합니다.");
                     return;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("잘못된 선택입니다. 다시 시도해주세요.");
             }
         }
     }
 
     private static void printMenu() {
-        System.out.println("\n--- Cow Management System ---");
-        System.out.println("1. List all cows");
-        System.out.println("2. Get cow by ID");
-        System.out.println("3. Insert new cow");
-        System.out.println("4. Update cow");
-        System.out.println("5. Delete cow");
-        System.out.println("6. Exit");
-        System.out.print("Enter your choice: ");
+        System.out.println("\n--- 소 관리 시스템 ---");
+        System.out.println("1. 모든 소 목록 조회");
+        System.out.println("2. ID로 소 조회");
+        System.out.println("3. 새로운 소 추가");
+        System.out.println("4. 소 정보 업데이트");
+        System.out.println("5. 소 삭제");
+        System.out.println("6. 종료");
+        System.out.print("실행할 번호 입력 : ");
     }
 
     private static void listAllCows() {
         List<Cow> cows = cowService.selectAll();
         if (cows.isEmpty()) {
-            System.out.println("No cows found.");
+            System.out.println("소가 없습니다.");
         } else {
             for (Cow cow : cows) {
                 System.out.println(cow);
@@ -61,45 +61,45 @@ public class CowMain {
     }
 
     private static void getCowById() {
-        System.out.print("Enter cow ID: ");
+        System.out.print("소 ID를 입력하세요: ");
         String cowId = scanner.nextLine();
         Cow cow = cowService.selectById(cowId);
         if (cow != null) {
             System.out.println(cow);
         } else {
-            System.out.println("Cow not found.");
+            System.out.println("소를 찾을 수 없습니다.");
         }
     }
 
     private static void insertNewCow() {
-        System.out.print("Enter cow ID: ");
+        System.out.print("소 ID를 입력하세요: ");
         String cowId = scanner.nextLine();
-        System.out.print("Enter cow age: ");
+        System.out.print("소의 나이를 입력하세요: ");
         Integer age = Integer.valueOf(scanner.nextLine());
-        System.out.print("Enter cow health status: ");
+        System.out.print("소의 건강 상태를 입력하세요: ");
         String healthStatus = scanner.nextLine();
-        System.out.print("Enter cow gender: ");
+        System.out.print("소의 성별을 입력하세요: ");
         String gender = scanner.nextLine();
 
         Cow newCow = new Cow(cowId, age, healthStatus, gender);
         cowService.insert(newCow);
-        System.out.println("New cow inserted successfully.");
+        System.out.println("새로운 소가 성공적으로 추가되었습니다.");
     }
 
     private static void updateCow() {
-        System.out.print("Enter cow ID to update: ");
+        System.out.print("업데이트할 소의 ID를 입력하세요: ");
         String cowId = scanner.nextLine();
         Cow existingCow = cowService.selectById(cowId);
         if (existingCow == null) {
-            System.out.println("Cow not found.");
+            System.out.println("소를 찾을 수 없습니다.");
             return;
         }
 
-        System.out.print("Enter new age (press enter to keep current): ");
+        System.out.print("새로운 나이를 입력하세요 (변경하지 않으려면 엔터): ");
         String age = scanner.nextLine();
-        System.out.print("Enter new health status (press enter to keep current): ");
+        System.out.print("새로운 건강 상태를 입력하세요 (변경하지 않으려면 엔터): ");
         String healthStatus = scanner.nextLine();
-        System.out.print("Enter new gender (press enter to keep current): ");
+        System.out.print("새로운 성별을 입력하세요 (변경하지 않으려면 엔터): ");
         String gender = scanner.nextLine();
 
         Cow updatedCow = new Cow(
@@ -110,13 +110,13 @@ public class CowMain {
         );
 
         cowService.updateById(cowId, updatedCow);
-        System.out.println("Cow updated successfully.");
+        System.out.println("소 정보가 성공적으로 업데이트되었습니다.");
     }
 
     private static void deleteCow() {
-        System.out.print("Enter cow ID to delete: ");
+        System.out.print("삭제할 소의 ID를 입력하세요: ");
         String cowId = scanner.nextLine();
         cowService.deleteById(cowId);
-        System.out.println("Cow deleted successfully.");
+        System.out.println("소가 성공적으로 삭제되었습니다.");
     }
 }

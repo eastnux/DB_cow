@@ -30,7 +30,7 @@ public class CustomerService {
             while (rs.next()) {
                 Customer customer = setCustomer(rs);
                 customerList.add(customer);
-                System.out.println(customer);
+//                System.out.println(customer); 중복 출력 방지를 위해 주석 처리.
             }
             return customerList;
         } catch (SQLException e) {
